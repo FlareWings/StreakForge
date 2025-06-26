@@ -9,7 +9,3 @@ __pycache__/
 # OS junk files
 .DS_Store
 Thumbs.db
-
-# Badge auto-gen
-badges/*.svg
-!badges/.gitkeep
