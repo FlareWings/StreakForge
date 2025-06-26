@@ -1,0 +1,18 @@
+[
+  {
+    "username": "BuiltByPooja",
+    "display": "Pooja Mahesh",
+    "joined": "2025-06-24",
+    "difficulty_focus": "medium",
+    "goals": {
+      "weekly": "Solve 5 mediums",
+      "streak_target": 30
+    }
+  },
+  {
+    "username": "FlareWings",
+    "display": "Chandu",
+    "joined": "2025-06-25",
+    "difficulty_focus": "medium"
+  }
+]

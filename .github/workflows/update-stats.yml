@@ -1,0 +1,46 @@
+# .github/workflows/update-stats.yml
+
+name: Update Stats & Badges
+
+on:
+  push:
+    paths:
+      - 'logs/**'
+      - 'scripts/**'
+      - '.github/workflows/**'
+  schedule:
+    - cron: '0 1 * * *'  # daily at 01:00 UTC
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+
+      - name: Generate streaks & badges
+        run: |
+          python3 scripts/generate_badges.py
+
+      - name: Calculate totals (optional log output)
+        run: |
+          python3 scripts/calculate_totals.py
+
+      - name: Commit updated badges
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add badges/
+          git commit -m "🔁 Update badges (streak/solved/longest)" || echo "No changes to badges"
+          git push
